@@ -15,9 +15,6 @@ php artisan migrate
 # Seed the database
 php artisan db:seed
 
-## Postman Collection
-
-
 
 
 ### Authentication

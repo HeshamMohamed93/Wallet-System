@@ -15,6 +15,9 @@ php artisan migrate
 # Seed the database
 php artisan db:seed
 
+## Postman Collection
+
+You can find the Postman collection for testing the API endpoints [here](https://www.postman.com/speeding-meadow-176611/workspace/wallet-system/collection/1053931-2a444aa2-77aa-45af-83df-d4d36ef46213?action=share&creator=1053931).
 
 
 ### Authentication

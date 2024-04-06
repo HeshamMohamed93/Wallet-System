@@ -51,6 +51,31 @@ All endpoints require authentication using Sanctum Laravel authentication. Token
 ## API Documentation
 The wallet system provides API endpoints for seamless integration with external applications. Below are the available endpoints:
 
+### User Login
+
+- **Endpoint:** `/api/login`
+- **Method:** POST
+- **Description:** Logs in a user to the system.
+- **Request Body:**
+    - `email`: User's email address.
+    - `password`: User's password.
+- **Response Format:** JSON
+- **Authentication Required:** No
+
+### User Registration
+
+- **Endpoint:** `/api/register`
+- **Method:** POST
+- **Description:** Registers a new user in the system.
+- **Request Body:**
+    - `name`: User's name.
+    - `email`: User's email address.
+    - `password`: User's password.
+    - `password_confirmation`: Confirmation of the password.
+- **Response Format:** JSON
+- **Authentication Required:** No
+
+
 ## Deposit Funds
 
 - **Endpoint:** `/api/wallet/deposit`

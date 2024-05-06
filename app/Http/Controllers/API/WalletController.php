@@ -57,7 +57,7 @@ class WalletController extends Controller
 
         $user = Auth::user();
 
-        $transactions = Transaction::with('recipientUser')
+        $transactions = Transaction::with(['recipientUser', 'wallet'])
             ->where(function ($query) use ($user) {
                 $query->where('recipient_user_id', $user->id)
                     ->orWhereHas('wallet', function ($query) use ($user) {
@@ -204,33 +204,5 @@ class WalletController extends Controller
         $wallet->save();
 
         return response()->json(['message' => 'PIN code changed successfully']);
-    }
-
-    public function test_change_pin_code_successfully()
-    {
-        // Create a user and wallet
-        $user = User::factory()->create();
-        $user->wallet()->create(['pin_code' => Hash::make('123456')]);
-
-        // Authenticate as the user
-        $this->actingAs($user);
-
-        // Define request data
-        $requestData = [
-            'old_pin_code' => '123456',
-            'new_pin_code' => '654321',
-            'confirm_new_pin_code' => '654321',
-            'password' => 'password123',
-        ];
-
-        // Send request to change pin code
-        $response = $this->postJson('/api/wallet/change-pin-code', $requestData);
-
-        // Assert response
-        $response->assertStatus(200)
-            ->assertJson(['message' => 'PIN code changed successfully']);
-
-        // Assert that the pin code has been updated in the database
-        $this->assertTrue(Hash::check('654321', $user->wallet->fresh()->pin_code));
     }
 }
